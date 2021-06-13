@@ -13,6 +13,9 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Get Branch Name
+        uses: nelonoel/branch-name@v1.0.1
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -28,5 +31,5 @@ jobs:
           context: ./app/
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{GITHUB_REF##*/}}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{BRANCH_NAME}}
             ${{ secrets.DOCKER_HUB_USERNAME }}/usher:latest
