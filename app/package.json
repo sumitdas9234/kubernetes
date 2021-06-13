@@ -1,10 +1,11 @@
 {
   "name": "usher",
   "version": "1.2.0",
-  "description": "An application to practice on local k8s (microk8s).",
+  "description": "An simple application to practice on local k8s (microk8s).",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js"
+    "dev": "nodemon ./index.js",
+    "start": "node ./index.js"
   },
   "keywords": [
     "k8s",
