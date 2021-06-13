@@ -13,8 +13,10 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
-        name: Get Branch Name
-        uses: nelonoel/branch-name@v1.0.1
+        name: Extract Branch Name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: BRANCH_NAME
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -31,5 +33,5 @@ jobs:
           context: ./app/
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{BRANCH_NAME}}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{steps.BRANCH_NAME.outputs.branch}}
             ${{ secrets.DOCKER_HUB_USERNAME }}/usher:latest
