@@ -7,6 +7,7 @@ const handlebars = require("express-handlebars");
 const os = require("os");
 const hljs = require("highlight.js");
 const isDocker = require('is-docker');
+const prettyBytes = require('pretty-bytes');
 
 /**
  * App Variables
@@ -19,14 +20,10 @@ let data = {
   version: process.env.npm_package_version,
   platform: os.platform(),
   memstats: {
-    memused:
-      Math.round((os.totalmem() - os.freemem()) / 1000000) +
-      " MB/" +
-      Math.round(os.totalmem() / 1000000) +
-      " MB",
+    memused:prettyBytes(os.totalmem() - os.freemem()) +" out of "+ prettyBytes(os.totalmem()),
     freemem: Math.round((os.freemem() / os.totalmem()) * 100) + " %",
   },
-  deployed_at: new Date().toString(),
+  deployed: new Date().toUTCString(),
 };
 
 /**
@@ -62,5 +59,5 @@ app.listen(port, () => {
   console.log(`NodeJS          : ${process.version} (${process.release.lts})`);
   console.log(`Docker          : ${isDocker()}`);
   console.log(`Platform        : ${data.platform}`);
-  console.log(`Deployed At     : ${data.deployed_at}`);
+  console.log(`Deployed At     : ${data.deployed}`);
 });

@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <title>Info | microk8s - Running</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <header>
+    <div class="container">
+       <h3>hosted on <span class="inverted">KUBERNETES</span> using</h3>
+       <h1 class="gradient-text ">microk8s<small>.io</small></h1>
+    </div>
+  </header>
+  <body>
+    <section>
+      <div class="data">
+        <p>Running on
+          <span class="node-release">NodeJs ({{release}})</span>
+          <span class="node-version">{{node_version}}</span></p>
+        <p>Container Runtime ->
+          {{#if isDocker}}<span class="active">● Docker Engine</span>{{else}}<span
+              class="inactive"
+            >● N/A</span>{{/if}}</p>
+        <p>Listener Status ->
+          {{#if port}}<span class="active">● Active (Port
+              {{port}})</span>{{else}}<span class="inactive">● Stopped</span>{{/if}}
+          <pre><code>{{{data}}}</code></pre>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
