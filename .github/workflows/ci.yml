@@ -5,6 +5,10 @@ on:
     branches:
       - "v*.*.*"
 
+defaults:
+  run:
+    working-directory: ./app/
+
 jobs:
   docker:
     runs-on: ubuntu-latest
