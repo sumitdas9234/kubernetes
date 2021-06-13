@@ -9,9 +9,6 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Git Branch Name
-        id: git-branch-name
-        uses: EthanSK/git-branch-name-action@v1
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -31,5 +28,5 @@ jobs:
           context: ./app/
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{ GIT_BRANCH_NAME }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${GITHUB_REF##*/}
             ${{ secrets.DOCKER_HUB_USERNAME }}/usher:latest
