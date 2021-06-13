@@ -28,5 +28,5 @@ jobs:
           context: ./app/
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${GITHUB_REF##*/}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{GITHUB_REF##*/}}
             ${{ secrets.DOCKER_HUB_USERNAME }}/usher:latest
