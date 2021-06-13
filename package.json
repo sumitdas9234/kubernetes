@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "node-webserver-app",
   "version": "1.0.0",
   "description": "A dummy application to practice on local k8s (microk8s).",
   "main": "index.js",
@@ -17,6 +17,9 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.2"
+    "express-handlebars": "^5.3.2",
+    "highlight.js": "^11.0.1",
+    "humanize-duration": "^3.27.0",
+    "is-docker": "^2.2.1"
   }
 }
