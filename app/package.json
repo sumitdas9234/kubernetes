@@ -1,6 +1,6 @@
 {
   "name": "usher",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "An application to practice on local k8s (microk8s).",
   "main": "index.js",
   "scripts": {
