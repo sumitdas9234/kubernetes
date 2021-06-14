@@ -6,7 +6,7 @@ on:
       - "v*.*.*"
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -21,6 +21,7 @@ jobs:
       
 
       - name: Archive Bundle for Release
+        working-directory: ./app
         uses: actions/upload-artifact@v2
         with:
           name: dist
