@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release
-          path: ./app
+          path: ./app/target
 
   package:
     needs: build
@@ -35,11 +35,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: release
-          path: ./app
+          path: ./app/target
         
       - name: DEBUG
         shell: bash
-        run: ls ./app
+        run: ls ./app && ls ./app/target
 
       - name: Extract Branch Name
         shell: bash
