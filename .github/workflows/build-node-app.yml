@@ -21,10 +21,9 @@ jobs:
       
 
       - name: Archive Bundle for Release
-        working-directory: ./app
         uses: actions/upload-artifact@v2
         with:
           name: dist
           path: |
-            dist
-            !dist/**/*.txt
+            app/dist
+            !app/dist/**/*.txt
