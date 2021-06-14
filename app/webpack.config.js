@@ -1,5 +1,5 @@
 const path = require("path");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: path.resolve(__dirname, "index.js"),
   output: {
@@ -8,11 +8,17 @@ module.exports = {
   },
   target: "node",
   plugins: [
-    new CopyWebpackPlugin([
-        {from: path.resolve(__dirname, "public/"),to: path.resolve(__dirname, "dist/public/")} 
-    ]), 
-    new CopyWebpackPlugin([
-      {from: path.resolve(__dirname, "views/"),to: path.resolve(__dirname, "dist/views/")} 
-  ]), 
-]
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public/"),
+          to: path.resolve(__dirname, "dist/public/"),
+        },
+        {
+          from: path.resolve(__dirname, "views/"),
+          to: path.resolve(__dirname, "dist/views/"),
+        },
+      ],
+    }),
+  ],
 };
