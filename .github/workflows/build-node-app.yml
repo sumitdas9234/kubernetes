@@ -1,4 +1,4 @@
-name: Build Usher using Webpack 
+name: Build, Pack and Push to dockerhub.io 
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: release
-          path: ./app/
+          path: ./app/dist/
 
       - name: Extract Branch Name
         shell: bash
