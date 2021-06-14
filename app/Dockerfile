@@ -4,7 +4,7 @@ FROM node:14
 WORKDIR /usr/src/app
 
 # Bundle app source
-COPY release/api.bundle.js .
+COPY api.bundle.js .
 
 EXPOSE 8000
 CMD [ "node", "api.bundle.js" ]

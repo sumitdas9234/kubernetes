@@ -38,10 +38,6 @@ jobs:
         with:
           name: release
           path: ./app/
-        
-      - name: DEBUG
-        shell: bash
-        run: ls ./app
 
       - name: Extract Branch Name
         shell: bash
