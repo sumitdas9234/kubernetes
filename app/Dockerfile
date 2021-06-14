@@ -7,4 +7,4 @@ WORKDIR /usr/src/app
 COPY release/api.bundle.js .
 
 EXPOSE 8000
-CMD [ "node", "bundle.js" ]
+CMD [ "node", "api.bundle.js" ]
