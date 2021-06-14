@@ -1,10 +1,12 @@
 {
   "name": "usher",
-  "version": "1.1.0",
-  "description": "An application to practice on local k8s (microk8s).",
+  "version": "1.2.0",
+  "description": "An simple application to practice on local k8s (microk8s).",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js"
+    "build": "webpack --mode=production",
+    "dev": "nodemon ./index.js",
+    "start": "node ./dist/api.bundle.js"
   },
   "keywords": [
     "k8s",
@@ -13,7 +15,9 @@
   "author": "Sumit Kumar Das",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
   },
   "dependencies": {
     "express": "^4.17.1",
