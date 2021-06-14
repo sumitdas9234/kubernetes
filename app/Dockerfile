@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY bundle.js .
 
 EXPOSE 8000
-CMD [ "node", "index.js" ]
+CMD [ "node", "bundle.js" ]
