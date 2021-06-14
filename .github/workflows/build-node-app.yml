@@ -1,0 +1,28 @@
+name: Build Usher using Webpack 
+
+on:
+  push:
+    branches:
+      - "v*.*.*"
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+
+      - name: Install Packages & Create Bundle
+        run: |
+          npm install
+          npm run build --if-present
+      
+
+      - name: Archive Bundle for Release
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            dist
+            !dist/**/*.txt
