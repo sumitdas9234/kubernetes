@@ -32,6 +32,4 @@ jobs:
         with:
           context: ./app/
           push: true
-          tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{steps.BRANCH_NAME.outputs.branch}}
-            ${{ secrets.DOCKER_HUB_USERNAME }}/usher:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/usher:${{steps.BRANCH_NAME.outputs.branch}}
