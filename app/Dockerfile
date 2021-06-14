@@ -4,6 +4,8 @@ FROM node:14
 WORKDIR /usr/src/app
 
 # Bundle app source
+COPY public .
+COPY views .
 COPY api.bundle.js .
 
 EXPOSE 8000
