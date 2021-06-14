@@ -700,4 +700,4 @@ MigrationBackup/
 
 .idea/
 
-.*/dist
+**/dist
