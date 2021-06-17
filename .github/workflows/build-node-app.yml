@@ -45,4 +45,4 @@ jobs:
           gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
           project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
           image_name: usher
-          image_tag: v${{GITHUB_RUN_ID}}.0.{{ GITHUB_RUN_NUMBER}}
+          image_tag: v$GITHUB_RUN_ID.0.$GITHUB_RUN_NUMBER
