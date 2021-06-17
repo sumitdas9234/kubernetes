@@ -1,4 +1,4 @@
-name: Build, Pack and Push to dockerhub.io 
+name: Build, Pack and Push to GCR 
 
 on:
   push:
@@ -39,11 +39,10 @@ jobs:
           name: release
           path: ./google/app/dist/
 
-      - name: Build and Push Docker Image to GCR
-        uses: RafikFarhad/push-to-gcr-github-action@v3.0.2
-        with:
-          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
-          image_name: usher
-          image_tag: v$GITHUB_RUN_ID.0.$GITHUB_RUN_NUMBER
-          dockerfile: ./google/app/Dockerfile
+      - name: "Build & Push Container image to Google Cloud Registry"
+        shell: bash
+        run: |
+          docker login -u _json_key -p '${{ secrets.GCLOUD_SERVICE_KEY }}' 'https://gcr.io'
+          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v$GITHUB_RUN_ID.0.$GITHUB_RUN_NUMBER
+          docker push gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v$GITHUB_RUN_ID.0.$GITHUB_RUN_NUMBER
+        working-directory: ./google/app/
