@@ -27,7 +27,7 @@ jobs:
             !./google/app/dist/**/*.txt
 
   create-docker-image:
-    needs: build
+    needs: build-node-package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
