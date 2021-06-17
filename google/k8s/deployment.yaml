@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usher
+spec:
+  selector:
+    matchLabels:
+      run: usher
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: usher
+    spec:
+      containers:
+      - name: usher
+        image: sumitdas9234/usher:v1.2.0
+        ports:
+        - containerPort: 8000
+        resources:
+          - requests:
+          
