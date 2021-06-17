@@ -42,7 +42,8 @@ jobs:
       - name: "Build & Push Container image to Google Cloud Registry"
         shell: bash
         run: |
+          BRANCH_NAME='echo $GITHUB_REF | awk '{split($0,a,"/"); print a[3]}''
           docker login -u _json_key -p '${{ secrets.GCLOUD_SERVICE_KEY }}' 'https://gcr.io'
-          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v$GITHUB_RUN_ID.0.$GITHUB_RUN_NUMBER
-          docker push gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v$GITHUB_RUN_ID.0.$GITHUB_RUN_NUMBER
+          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:$BRANCH_NAME-$GITHUB_RUN_NUMBER
+          docker push gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v1.0.$$BRANCH_NAME-$GITHUB_RUN_NUMBER
         working-directory: ./google/app/
