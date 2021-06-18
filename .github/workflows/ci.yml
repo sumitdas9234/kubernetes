@@ -1,0 +1,38 @@
+name: Build, Pack and Push to GCR 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build Application Bundle
+        run: |
+          export BRANCH_NAME=${GITHUB_REF##*/}
+          npm install
+          npm run build --if-present
+        working-directory: ./google/app    
+
+      - name: Build Container Image
+        shell: bash
+        run: |
+          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:$BRANCH_NAME-$GITHUB_RUN_NUMBER
+
+      - name: Login to GCR
+        shell: bash
+        run: |
+          BRANCH_NAME=${GITHUB_REF##*/}
+          docker login -u _json_key -p '${{ secrets.GCLOUD_SERVICE_KEY }}' 'https://gcr.io'
+
+      - name: Push Container Image to Google Cloud Registry
+        shell: bash
+        run: |
+          BRANCH_NAME=${GITHUB_REF##*/}
+          docker login -u _json_key -p '${{ secrets.GCLOUD_SERVICE_KEY }}' 'https://gcr.io'
+          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:$BRANCH_NAME-$GITHUB_RUN_NUMBER
+          docker push gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v1.0.$GITHUB_RUN_NUMBER
+        working-directory: ./google/app/
