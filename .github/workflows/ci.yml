@@ -27,14 +27,10 @@ jobs:
       - name: Login to GCR
         shell: bash
         run: |
-          BRANCH_NAME=
           docker login -u _json_key -p '${{ secrets.GCLOUD_SERVICE_KEY }}' 'https://gcr.io'
 
       - name: Push Container Image to Google Cloud Registry
         shell: bash
         run: |
-          BRANCH_NAME=${GITHUB_REF##*/}
-          docker login -u _json_key -p '${{ secrets.GCLOUD_SERVICE_KEY }}' 'https://gcr.io'
-          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:$BRANCH_NAME-$GITHUB_RUN_NUMBER
-          docker push gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:v1.0.$GITHUB_RUN_NUMBER
+          docker push gcr.io/${{ secrets.GCLOUD_PROJECT_ID }}/usher:${{ env.tag }}
         working-directory: ./google/app/
