@@ -1,13 +1,6 @@
 name: Build, Pack and Push to GCR 
-env:
-  version: "default"
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Tag the Image Explicitly'     
-        required: true
-        default: ${{env.version}}
 
 jobs:
   default:
